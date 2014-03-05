@@ -43,6 +43,8 @@
 }
 */
 
+
+
 -(void)setImages:(NSArray *)_imagesArray placeHolder:(UIImage *)placeHolder{
     if (_imagesArray.count != 0) {
         
@@ -59,20 +61,63 @@
         imagesScrollView.pagingEnabled = YES;
         
         for (int i=0;i<_imagesArray.count;i++){
-            NSString *imageUrl = [_imagesArray objectAtIndex:i];
+            UIImage *image = [_imagesArray objectAtIndex:i];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.frame.size.width, 0, self.frame.size.width, self.frame.size.width)];
+            [imageView setImage:image];
+            [imagesScrollView addSubview:imageView];
+        }
+        imagesScrollView.contentSize = CGSizeMake(_imagesArray.count * self.frame.size.width, self.frame.size.width);
+        [self.scrollView addSubview:imagesScrollView];
+        
+        // imagesHeight = 160 + 45 + dy;
+        
+        //  Page Control
+        self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, imagesHeight- self.pageControlHeight, self.frame.size.width, self.pageControlHeight)];
+        self.pageControl.numberOfPages = _imagesArray.count;
+        self.pageControl.currentPage = 0;
+        self.pageControl.hidesForSinglePage = YES;
+        [self.pageControl setPageIndicatorTintColor:[UIColor whiteColor]];
+        [self.pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
+        [self.scrollView addSubview:self.pageControl];
+        
+        self.bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, imagesHeight, self.frame.size.width, self.frame.size.height - imagesHeight)];
+        self.bottomView.backgroundColor = [UIColor whiteColor];
+        [self.scrollView addSubview:self.bottomView];
+    }
+    
+}
+
+-(void)setImageUrls:(NSArray *)_urlsArray placeHolder:(UIImage *)placeHolder
+{
+    if (_urlsArray.count != 0) {
+        
+        //images
+        imagesScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, imagesScrollStart, self.frame.size.width, self.frame.size.width)];
+        imagesScrollView.backgroundColor = [UIColor whiteColor];
+        imagesScrollView.canCancelContentTouches = NO;
+        imagesScrollView.showsHorizontalScrollIndicator = NO;
+        imagesScrollView.showsVerticalScrollIndicator = NO;
+        imagesScrollView.bounces = NO;
+        imagesScrollView.delegate = self;
+        imagesScrollView.clipsToBounds = YES;
+        imagesScrollView.scrollEnabled = YES;
+        imagesScrollView.pagingEnabled = YES;
+        
+        for (int i=0;i<_urlsArray.count;i++){
+            NSString *imageUrl = [_urlsArray objectAtIndex:i];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.frame.size.width, 0, self.frame.size.width, self.frame.size.width)];
             [imageView setImageWithURL:[NSURL URLWithString:imageUrl]
                       placeholderImage:placeHolder];
             [imagesScrollView addSubview:imageView];
         }
-        imagesScrollView.contentSize = CGSizeMake(_imagesArray.count * self.frame.size.width, self.frame.size.width);
+        imagesScrollView.contentSize = CGSizeMake(_urlsArray.count * self.frame.size.width, self.frame.size.width);
         [self.scrollView addSubview:imagesScrollView];
         
        // imagesHeight = 160 + 45 + dy;
         
         //  Page Control
         self.pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, imagesHeight- self.pageControlHeight, self.frame.size.width, self.pageControlHeight)];
-        self.pageControl.numberOfPages = _imagesArray.count;
+        self.pageControl.numberOfPages = _urlsArray.count;
         self.pageControl.currentPage = 0;
         self.pageControl.hidesForSinglePage = YES;
         [self.pageControl setPageIndicatorTintColor:[UIColor whiteColor]];

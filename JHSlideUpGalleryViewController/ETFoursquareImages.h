@@ -27,7 +27,8 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *bottomView;
 
--(void)setImages:(NSArray *)_imagesArray placeHolder:(UIImage *)placeHolder;
+-(void)setImages:(NSArray *)_imagesArray;
+-(void)setImageUrls:(NSArray *)_urlsArray placeHolder:(UIImage *)placeHolder;
 
 -(void)setImagesHeight:(int)_imagesHeight;
 
