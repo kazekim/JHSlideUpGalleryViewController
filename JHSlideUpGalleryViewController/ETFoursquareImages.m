@@ -45,7 +45,7 @@
 
 
 
--(void)setImages:(NSArray *)_imagesArray placeHolder:(UIImage *)placeHolder{
+-(void)setImages:(NSArray *)_imagesArray{
     if (_imagesArray.count != 0) {
         
         //images
