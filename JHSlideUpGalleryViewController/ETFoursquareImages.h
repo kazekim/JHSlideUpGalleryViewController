@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AFNetworking/UIImageView+AFNetworking.h>
 
 @interface ETFoursquareImages : UIView <UIScrollViewDelegate> {
     NSMutableArray *imagesArray;
@@ -26,7 +27,7 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *bottomView;
 
--(void)setImages:(NSArray*)_imagesArray;
+-(void)setImages:(NSArray *)_imagesArray placeHolder:(UIImage *)placeHolder;
 
 -(void)setImagesHeight:(int)_imagesHeight;
 

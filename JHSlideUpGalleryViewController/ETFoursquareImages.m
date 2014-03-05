@@ -43,7 +43,7 @@
 }
 */
 
--(void)setImages:(NSArray *)_imagesArray{
+-(void)setImages:(NSArray *)_imagesArray placeHolder:(UIImage *)placeHolder{
     if (_imagesArray.count != 0) {
         
         //images
@@ -59,9 +59,10 @@
         imagesScrollView.pagingEnabled = YES;
         
         for (int i=0;i<_imagesArray.count;i++){
-            UIImage *image = [_imagesArray objectAtIndex:i];
+            NSString *imageUrl = [_imagesArray objectAtIndex:i];
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * self.frame.size.width, 0, self.frame.size.width, self.frame.size.width)];
-            [imageView setImage:image];
+            [imageView setImageWithURL:[NSURL URLWithString:imageUrl]
+                      placeholderImage:placeHolder];
             [imagesScrollView addSubview:imageView];
         }
         imagesScrollView.contentSize = CGSizeMake(_imagesArray.count * self.frame.size.width, self.frame.size.width);
