@@ -46,6 +46,8 @@
     [self setupValue];
     [self initGalleryView];
     
+    [self setPanAreaView:self.view];
+    
     [self addGestures];
 }
 
@@ -119,6 +121,11 @@
     [self.view addSubview:fullScreenGalleryViewController.view];
 }
 
+-(void)setPanAreaView:(UIView *)panAreaView{
+    _panAreaView = panAreaView;
+    
+    [self addGestures];
+}
 
 #pragma mark -
 #pragma mark UIGestureRecognizers
@@ -134,18 +141,20 @@
     }
     
     [self attachTapGesture];
-    [self.view addGestureRecognizer:self.panGesture];
+    [self.panAreaView addGestureRecognizer:self.panGesture];
 }
 
 - (void)attachTapGesture
 {
-    [self removeTapGestures];
+    [self.overlayView removeGestureRecognizer:self.tapGesture];
     [self.overlayView addGestureRecognizer:self.tapGesture];
+    [self.overlayView addGestureRecognizer:self.panGesture];
 }
 
 - (void)removeTapGestures
 {
     [self.overlayView removeGestureRecognizer:self.tapGesture];
+    [self.panAreaView addGestureRecognizer:self.panGesture];
 }
 
 - (void)addGalleryGestures

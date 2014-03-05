@@ -11,5 +11,6 @@
 
 @interface ViewController : JHSlideUpGalleryViewController
 
+@property (strong,nonatomic) IBOutlet UIView *panView;
 
 @end

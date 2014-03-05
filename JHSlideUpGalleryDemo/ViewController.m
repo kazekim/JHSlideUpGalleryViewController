@@ -24,6 +24,8 @@
     NSArray *images  = [NSArray arrayWithObjects:[UIImage imageNamed:@"horses"], [UIImage imageNamed:@"surfer"], [UIImage imageNamed:@"bridge"], nil];
     [self setGalleryImageArray:images];
     
+    [self setPanAreaView:self.panView];
+    
     self.fullScreenGalleryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GalleryViewController"];
 }
 
