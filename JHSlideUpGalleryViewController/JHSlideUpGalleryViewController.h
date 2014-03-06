@@ -48,6 +48,8 @@ typedef NS_ENUM(NSInteger, ShowBottomStep)
 -(void)setGalleryHeight:(int)height;
 -(void)setGalleryImageArray:(NSArray *) images;
 
+#pragma mark Overlay
+-(void)addOverlayToView:(UIView *)view;
 
 @end
 
