@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, ShowBottomStep)
 };
 
 @property (strong,nonatomic) UIView *panAreaView;
+@property (strong,nonatomic) UIImage *placeHolderImage;
 
 @property (nonatomic) int galleryHeight;
 @property (nonatomic) CGFloat animationDuration;

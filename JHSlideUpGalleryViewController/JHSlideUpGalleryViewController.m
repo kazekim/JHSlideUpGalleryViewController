@@ -73,7 +73,11 @@
     }
     self.galleryView = [[ETFoursquareImages alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.galleryHeight)];
     [self.galleryView setImagesHeight:self.galleryHeight];
-    [self.galleryView setImages:self.imageArray];
+    if([[self.imageArray objectAtIndex:0] isKindOfClass:[NSString class]]){
+        [self.galleryView setImageUrls:self.imageArray placeHolder:self.placeHolderImage];
+    }else{
+        [self.galleryView setImages:self.imageArray];
+    }
     
     self.galleryView.layer.shouldRasterize = YES;
     self.galleryView.layer.rasterizationScale = [[UIScreen mainScreen] scale];
@@ -101,6 +105,12 @@
 {
     self.imageArray = images;
     [self.galleryView setImages:images];
+}
+
+-(void)setGalleryImageUrlArray:(NSArray *) images placeHolder:(UIImage *)placeHolder
+{
+    self.imageArray = images;
+    [self.galleryView setImageUrls:images placeHolder:placeHolder];
 }
 
 - (void)setFullScreenGalleryViewController:(UIViewController *)fullScreenGalleryViewController
