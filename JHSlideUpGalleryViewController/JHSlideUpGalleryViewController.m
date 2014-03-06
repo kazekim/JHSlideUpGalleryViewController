@@ -73,7 +73,8 @@
     [view addSubview:self.overlayView];
     [self.overlayView setHidden:YES];
     
-    [self.view bringSubviewToFront:self.galleryView];
+    [view bringSubviewToFront:self.overlayView];
+    [view bringSubviewToFront:self.galleryView];
 }
 
 -(void)initGalleryView
