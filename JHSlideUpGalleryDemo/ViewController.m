@@ -24,10 +24,10 @@
     [self setGalleryImageArray:images];
     
     [self setPanAreaView:self.panView];
-    [self addOverlayToView:self.view];
     
     self.fullScreenGalleryViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"GalleryViewController"];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

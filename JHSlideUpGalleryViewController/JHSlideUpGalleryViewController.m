@@ -65,18 +65,6 @@
     [self.overlayView setHidden:YES];
 }
 
--(void)addOverlayToView:(UIView *)view
-{
-    self.overlayView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, view.frame.size.width, view.frame.size.height)];
-    [self.overlayView setBackgroundColor:[UIColor blackColor]];
-    [self.overlayView setAlpha:0.0f];
-    [view addSubview:self.overlayView];
-    [self.overlayView setHidden:YES];
-    
-    [view bringSubviewToFront:self.overlayView];
-    [view bringSubviewToFront:self.galleryView];
-}
-
 -(void)initGalleryView
 {
     if(self.galleryView){
